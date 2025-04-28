@@ -5,7 +5,7 @@
 
 #define BUFFER_SIZE 128
 
-void read_lsb(unsigned char* img, char* buffer, int width, int height, int channels, int8_t bitOrder, int8_t onlyChannel) {
+void read_lsb(unsigned char* img, char* buffer, int width, int height, int channels, signed char bitOrder, signed char onlyChannel) {
     char thisBit = bitOrder == -1 ? 7 : 0;
     char thisChar = 0;
 
@@ -69,7 +69,7 @@ int main(int argc, char* argv[]) {
     char buffer[BUFFER_SIZE];
     const char* channelNames = "rgba";
 
-    int8_t onlyChannel, bitOrder;
+    signed char onlyChannel, bitOrder;
     for(onlyChannel = -1; onlyChannel < channels; onlyChannel++) {
         for(bitOrder = -1; bitOrder <= 1; bitOrder += 2) {
             memset(buffer, 0, BUFFER_SIZE);
