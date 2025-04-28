@@ -75,7 +75,6 @@ int main(int argc, char* argv[]) {
             memset(buffer, 0, BUFFER_SIZE);
             read_lsb(img, buffer, x, y, channels, bitOrder, onlyChannel);
 
-            // print params
             printf(bitOrder == -1 ? "high->low" : "low->high");
             printf(" channel: ");
             if(onlyChannel == -1) printf("all");
