@@ -10,9 +10,11 @@ void read_lsb(unsigned char* img, char* buffer, int width, int height, int chann
     char thisChar = 0;
 
     int printed = 0;
-    for(int y = 0; y < height; ++y) {
-        for(int x = 0; x < width; ++x) {
-            for(int channel = 0; channel < channels; ++channel) {
+
+    int y, x, channel;
+    for(y = 0; y < height; ++y) {
+        for(x = 0; x < width; ++x) {
+            for(channel = 0; channel < channels; ++channel) {
                 if(onlyChannel > 0 && channel != onlyChannel) continue;
 
                 int colorIndex = (((y*width) + x)*channels)+channel;
@@ -36,7 +38,7 @@ void read_lsb(unsigned char* img, char* buffer, int width, int height, int chann
 }
 
 void print_truncated(const char* str) {
-    char still_going = 1;
+    int still_going = 1;
     for(int stringIndex = 0; stringIndex < BUFFER_SIZE; ++stringIndex) {
         char thisChar = str[stringIndex];
 
@@ -45,7 +47,7 @@ void print_truncated(const char* str) {
         }
         printf("%c", thisChar);
     }
-    if(still_going > 0) printf("...");
+    if(still_going) printf("...");
 }
 
 int main(int argc, char* argv[]) {
@@ -67,8 +69,9 @@ int main(int argc, char* argv[]) {
     char buffer[BUFFER_SIZE];
     const char* channelNames = "rgba";
 
-    for(int8_t onlyChannel = -1; onlyChannel < channels; onlyChannel++) {
-        for(int8_t bitOrder = -1; bitOrder <= 1; bitOrder += 2) {
+    int8_t onlyChannel, bitOrder;
+    for(onlyChannel = -1; onlyChannel < channels; onlyChannel++) {
+        for(bitOrder = -1; bitOrder <= 1; bitOrder += 2) {
             memset(buffer, 0, BUFFER_SIZE);
             read_lsb(img, buffer, x, y, channels, bitOrder, onlyChannel);
 
