@@ -38,8 +38,8 @@ void read_lsb(unsigned char* img, char* buffer, int width, int height, int chann
 }
 
 void print_truncated(const char* str) {
-    int still_going = 1;
-    for(int stringIndex = 0; stringIndex < BUFFER_SIZE; ++stringIndex) {
+    int still_going = 1, stringIndex;
+    for(stringIndex = 0; stringIndex < BUFFER_SIZE; ++stringIndex) {
         char thisChar = str[stringIndex];
 
         if(thisChar == 0) {
