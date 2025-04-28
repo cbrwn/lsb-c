@@ -80,7 +80,7 @@ int main(int argc, char* argv[]) {
             if(onlyChannel == -1) printf("all");
             else printf("%c  ", channelNames[onlyChannel]);
 
-            printf(" - \t\"");
+            printf("\t- \"");
             print_truncated(buffer);
             printf("\"\n");
         }
